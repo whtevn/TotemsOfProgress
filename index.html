@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <style>
+    :root {
+      --red:#FE7F7B;
+      --blue:#54ACBF;
+      --blue-shade:#265A65;
+      --yellow:#FEDB5D;
+      --black:black;
+      --white:white;
+    }
+
+     html, .page {
+        margin: 0;
+        padding: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        height: 100%;
+        background: var(--blue);
+      }
+
+      .page__wrapper {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow: auto;
+      }
+      .page__header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      .page__section {
+        width: 100%;
+      }
+      .hero-header {
+        max-width: 900px;
+        align-self: center;
+      }
+      .image-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+      }
+      .image-header img{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+      .logo-image{
+        width: 25rem;
+      }
+      .title-image{
+        opacity: 0.5;
+        width: 40rem;
+      }
+      .header-button-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+      .header-button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .header-button {
+        text-decoration: none;
+        color: inherit;
+      }
+      .header-button__image {
+        height: 4rem;
+        width: 8rem;
+        border-radius: 0.5rem;
+        font-size: 3rem;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .header-button--listen .header-button__image {
+        background-color: var(--red);
+      }
+      .header-button--learn .header-button__image{
+        color: var(--yellow);
+      }
+      .header-button--buy .header-button__image{
+        background-color: var(--yellow);
+        color: var(--red);
+      }
+
+      .header-button__text {
+        font-size: 1.8rem;
+        text-transform: uppercase;
+        color: white;
+        margin-top: 0.5rem;
+        font-weight: bold;
+      }
+
+      .play-triangle {
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 1.6rem 0 1.6rem 3rem;
+        border-color: transparent transparent transparent var(--yellow);
+
+      }
+      .page-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .page-section__container {
+        display: flex;
+        flex-direction: column;
+        max-width: 960px;
+        padding: 3rem;
+      }
+      .page-section__header {
+        color: var(--white);
+        font-size: 3rem;
+        text-transform: capitalize;
+        margin: 0;
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+      }
+      .page-section__header a {
+        text-decoration: none;
+        color: inherit;
+      }
+      .page-section__body {
+        font-size: 1rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      .page-section--listen .page-section__header{
+        color: var(--white);
+        background-color: var(--red);
+      }
+      .page-section {
+        background-color: var(--white);
+      }
+      .page-section--listen {
+      }
+      .page-section--learn .page-section__header {
+        background-color: var(--blue);
+      }
+      .page-section--buy .page-section__header {
+        background-color: var(--yellow);
+      }
+      .song-description {
+        padding-right: 2rem;
+        padding-left: none;
+      }
+      .song-description--left {
+        padding-left: 2rem;
+        padding-right: none;
+      }
+      .social-icon {
+        max-width: 3rem;
+      }
+
+      .circle-link {
+        font-size: 3rem;
+        background: var(--black);
+        color: var(--white);
+        border: 0.5rem solid var(--white);
+        border-radius: 50%;
+        height: 15rem;
+        width: 15rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .circle-link__container {
+        max-width: 8rem;
+        text-align: center;
+      }
+
+      .social-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+      }
+      .social-row__link {
+      }
+      .social-row__image {
+        height: 1.5rem;
+        width: 2rem;
+        object-fit: contain;
+      }
+
+      .call-to-action {
+        padding: 1rem;
+        background: var(--yellow);
+        color: var(--blue-shade);
+        border-radius: 0.5rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+      .page__overlay {
+        position: fixed;
+        top: 25%;
+        left: 25%;
+        height: 50%;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+      }
+
+      .hide {
+        display: none; 
+      }
+      @media only screen and (max-width: 600px) {
+        .logo-image {
+          width: 40vw;
+        }
+        .title-image {
+          width: 80vw;
+        }
+      }
+      @media only screen and (max-width: 500px) {
+        .page-section__body {
+          flex-direction: column;
+        }
+        .page-section--listen .page-section__body {
+          flex-direction: column-reverse;
+        }
+
+        .hero-header {
+          width: 100%;
+        }
+
+        .logo-image {
+          width: 80vw;
+        }
+        .title-image {
+          width: 90vw;
+        }
+        .header-button-row {
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+        }
+        .header-button__image {
+          height: 5rem;
+          width: 5rem;
+          font-size: 5rem;
+        }
+
+        .header-button__text {
+          font-size: 5vw;
+          margin-top: 0.5rem;
+        }
+
+        .play-triangle {
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 1rem 0 1rem 3rem;
+          border-color: transparent transparent transparent var(--yellow);
+
+        }
+        .page__overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+    </style>
+
+  </head>
+  <body class="page">
+    <div class="page__overlay">
+      <div class="overlay__content">
+        <h1>hello</h1>
+        <p>how are you</p>
+      </div>
+      
+    </div>
+    <div class="page__wrapper">
+      <div class="hero-header">
+        <div class="image-header">
+          <img
+            class="title-image"
+            srcset="
+              /assets/images/band-name/band-name500.png 500w,
+              /assets/images/band-name/band-name800.png 800w,
+              /assets/images/band-name/band-name1000.png 1000w,
+              /assets/images/band-name/band-name.png 2865w
+            "
+            sizes="
+              (min-width: 100px) 90vw,
+              (min-width: 500px) and (max-width: 700px) 80vw,
+              (min-width: 700px) 40rem
+            "
+            alt="Totems Of Progress"
+          />
+          <div class="header-button-row">
+            <a href="#listen" class="header-button header-button--listen">
+              <span class="header-button__image">
+                <div class="play-triangle"></div>
+              </span>
+              <span class="header-button__text">
+                Listen
+              </span>
+            </a>
+            <a href="#learn" class="header-button header-button--learn">
+              <span class="header-button__image">
+                ?
+              </span>
+              <span class="header-button__text">
+                Learn
+              </span>
+            </a>
+            <a href="https://shop.totemsofprogress.com" target="_blank" class="header-button header-button--buy">
+              <span class="header-button__image">
+                !
+              </span>
+              <span class="header-button__text">
+                Buy
+              </span>
+            </a>
+          </div>
+          <img
+            class="logo-image"
+            srcset="
+              /assets/images/broken-pyramid/broken-pyramid500.png 500w,
+              /assets/images/broken-pyramid/broken-pyramid800.png 800w,
+              /assets/images/broken-pyramid/broken-pyramid1000.png 1000w,
+              /assets/images/broken-pyramid/broken-pyramid.png 2865w
+            "
+            sizes="
+              (min-width: 700px) 20rem,
+              (min-width: 500px) and (max-width: 700px) 40vw,
+              (min-width: 100px) 60vw
+            "
+            alt="The Broken Pyramid"
+          />
+          <div class="social-row">
+            <a class="social-row__link" href="https://www.youtube.com/channel/UCTu-JbUof2bvK3fH5buTf0g" target="_blank">
+              <img class="social-row__image" src="/assets/icons/youtube.png" />
+            </a>
+            <a class="social-row__link" href="https://facebook.com/TotemsOfProgress" target="_blank">
+              <img class="social-row__image" src="/assets/icons/facebook.png" />
+            </a>
+            <a class="social-row__link" href="https://www.instagram.com/TotemsOfProgress/" target="_blank">
+              <img class="social-row__image" src="/assets/icons/instagram.png" />
+            </a>
+            <a class="social-row__link" href="https://twitter.com/brokenpyramid" target="_blank">
+              <img class="social-row__image" src="/assets/icons/twitter.png" />
+            </a>
+            <a class="social-row__link" href="https://soundcloud.com/totems-of-progress" target="_blank">
+              <img class="social-row__image" src="/assets/icons/soundcloud.png" />
+            </a>
+          </div>
+          <a class="call-to-action">
+              Join The Mailing List
+          </a>
+        </div>
+      </div>
+      <div id="listen" class="page-section page-section--listen">
+        <h2 class="page-section__header"><a href="#listen">check out the debut single</a></h2>
+        <div class="page-section__container">
+          <div class="page-section__body">
+            <div class="song-description">
+              <h2>Peace In Our Sky</h2>
+              <h3>Loosely based on the story of Russian Cosmonaut Sergei Krikalev</h3>
+              <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Congue nisi vitae suscipit tellus mauris a diam. Lectus arcu bibendum at varius vel pharetra vel turpis.
+              </p>
+              <p>
+              Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Nullam non nisi est sit amet facilisis magna etiam. Blandit turpis cursus in hac habitasse platea dictumst quisque sagittis. Est lorem ipsum dolor sit amet consectetur adipiscing elit.
+              </p>
+              <p>
+              Consequat interdum varius sit amet. Integer eget aliquet nibh praesent tristique magna. Magnis dis parturient montes nascetur ridiculus. Accumsan sit amet nulla facilisi morbi. Risus at ultrices mi tempus imperdiet. Lacus luctus accumsan tortor posuere ac ut consequat. Enim lobortis scelerisque fermentum dui faucibus in.
+              </p>
+            </div>
+            <iframe width="280" height="157" src="https://www.youtube.com/embed/02CLdBKNqFQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+      <div id="learn" class="page-section page-section--learn">
+        <h2 class="page-section__header">What Are The Totems Of Progress</h2>
+        <div class="page-section__container">
+          <div class="page-section__body">
+            <iframe width="280" height="157" src="https://www.youtube.com/embed/02CLdBKNqFQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="song-description song-description--left">
+              <h2>Peace In Our Sky</h2>
+              <h3>Loosely based on the story of Sergei Krikalev</h3>
+              <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Congue nisi vitae suscipit tellus mauris a diam. Lectus arcu bibendum at varius vel pharetra vel turpis.
+              </p>
+              <p>
+              Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Nullam non nisi est sit amet facilisis magna etiam. Blandit turpis cursus in hac habitasse platea dictumst quisque sagittis. Est lorem ipsum dolor sit amet consectetur adipiscing elit.
+              </p>
+              <p>
+              Consequat interdum varius sit amet. Integer eget aliquet nibh praesent tristique magna. Magnis dis parturient montes nascetur ridiculus. Accumsan sit amet nulla facilisi morbi. Risus at ultrices mi tempus imperdiet. Lacus luctus accumsan tortor posuere ac ut consequat. Enim lobortis scelerisque fermentum dui faucibus in.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+
+      </div>
+    </div>
+  </body>
+</html>
